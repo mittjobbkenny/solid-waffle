@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.template.defaultfilters import slugify
 
 
@@ -9,10 +10,13 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ['-created_on']
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return f'/{self.slug}/{self.pk}/'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
