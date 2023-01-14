@@ -14,6 +14,22 @@
                 <p>{{ post.content }}</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="{% url 'update_post' post.slug post.pk %}">
+                    {% csrf_token %}
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="{% url 'delete_post' post.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
