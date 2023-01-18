@@ -23,4 +23,14 @@
     <br>
 </div>
 
+<script>
+    $(document).ready(function(){
+        $('button').click(function(){
+            if ($('form')[0].checkValidity()) {
+                $('button').html(`<i class="fa fa-spinner fa-spin loading"></i> Updating...`);
+            }
+        });
+    });
+</script>
+
 {% endblock %}
