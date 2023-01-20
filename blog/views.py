@@ -1,6 +1,8 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
+import json
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.http import Http404
 from django.db.models import Q
@@ -70,3 +72,22 @@ class SearchResults(generic.ListView):
         except Http404:
             messages.info(self.request, "You didn't enter any search criteria")
             return redirect('home')
+
+
+class SearchAuto(generic.ListView):
+    model = Post
+  
+    def get(self, request):
+        if request.is_ajax():
+            q = request.GET.get('term', '')
+            posts = Post.objects.filter(title__contains=q)
+            results=[]
+            for post in posts:
+                post_json = {}
+                post_json['label'] = post.title
+                results.append(post_json)
+            data = json.dumps(results)
+        else:
+            data = 'fail'
+        mimetype = 'application/json'
+        return HttpResponse(data, mimetype)

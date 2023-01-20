@@ -20,11 +20,12 @@
 
 <script>
     $(window).ready(function () {
-        $("#liveToast").toast('show');
+        $(".progress-bar").animate({
+            width: "0%"
+        }, 5000);
+        $("#liveToast").toast("show");
     });
-    $(".progress-bar").animate({
-        width: "0%"
-    }, 5000);
+    
 </script>
 
 {% endfor %}

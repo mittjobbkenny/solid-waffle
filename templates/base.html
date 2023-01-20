@@ -21,6 +21,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+
+
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Solid Waffle Blog</title>
 </head>
@@ -44,7 +57,7 @@
                     </li>
                 </ul>
                 <form class="d-flex ms-auto" role="search" action="{% url 'search_results' %}" method="GET">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q" id="tags">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
             </div>
@@ -73,6 +86,16 @@
         {% block content %}
         {% endblock content %}
     </main>
+
+
+    <script type="text/javascript">
+        $(function() {
+            $("#tags").autocomplete({
+                source: '{% url 'search_auto' %}',
+                minLength: 1,
+            });
+        });
+    </script>
 
 </body>
 
