@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2">
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
                 {{ form | crispy }}
                 <br>
