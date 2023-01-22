@@ -88,6 +88,6 @@ class SearchAuto(generic.ListView):
                 results.append(post_json)
             data = json.dumps(results)
         else:
-            data = 'fail'
+            return redirect('home')
         mimetype = 'application/json'
         return HttpResponse(data, mimetype)
